@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <main id="app">
+      <h1>Directiva v-text</h1>
+      <h2>{{name}}</h2>
+      <h2 v-text="name"></h2>
+      <h3 v-text="age"></h3>
+      <hr />
+
+      <h1>Directiva <code> v-html</code></h1>
+      <h3>Trae el elemento creado desde JS</h3>
+      <p v-html="apellido"></p>
+
+      <hr />
+      <h1>Directiva <code>v-show</code></h1>
+      <h3 v-show="age>18">Eres mayor de edad</h3>
+      <h3 v-show="age<18">Eres menor de edad</h3>
+
+      <hr />
+      <h1>Directiva <code>v-if</code></h1>
+      <h3 v-if="age>18">Eres mayor de edad</h3>
+      <h3 v-if="age<18">Eres menor de edad</h3>
+
+      <hr />
+      <h1>Directiva <code>v-else-if</code></h1>
+      <h3 v-if="gender=='F'">Eres Mujer</h3>
+      <h3 v-else-if="gender == 'M'">Eres Hombre</h3>
+      <h3 v-else-if="gender == 'O'">Eres Otro</h3>
+      <h3 v-else>No Identifiado</h3>
+      <hr />
+
+      <h1>Directiva <code>v-for</code></h1>
+      <h3 v-for="animal, index in animals" :key="index">
+        {{index}}. {{animal}}
+      </h3>
+
+      <hr />
+      <h1>Directiva <code>v-on</code></h1>
+      <button v-on:click="counter += 1">Agregar 1</button>
+
+      <button v-on:click="counter = 0">Reset</button>
+      <p>Se ha hecho <b>{{ counter }}</b> Clicks.</p>
+
+      <hr />
+      <h1>Directiva <code>v-bind</code></h1>
+      <img v-bind:src="img" v-bind:alt="alt" /> <br />
+      <img :src="img" :alt="alt" />
+
+      <hr />
+      <h1>Directiva <code>v-model</code></h1>
+      <h2>Tu nombre es: {{name}}</h2>
+      <label for="">Nu nombre es:</label>
+      <input type="text" v-model="name" />
+    </main>
+
+    <script>
+      const hola = {
+        data() {
+          return {
+            name: "Pablo Ortiz",
+            apellido: "<h1> Ortiz G </h1>", // crear elemento h1 en el DOM
+            age: 10, // condicion para  v-show (Valor true o false)
+            gender: "O",
+            animals: ["Gato", "Perro", "Pájaro", "Dinosaurio"],
+            loginType: "username",
+            counter: 0,
+            img: "https://placeimg.com/400/400/people",
+            alt: "Logo",
+          };
+        },
+      };
+      Vue.createApp(hola).mount("#app"); // Crear la aplicacion y montarla para rederizar
+    </script>
+  </body>
+</html>
